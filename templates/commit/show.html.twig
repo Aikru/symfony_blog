@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commit{% endblock %}
+
+{% block body %}
+    <h1>Commit</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ commit.id }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ commit.email }}</td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ commit.content }}</td>
+            </tr>
+            <tr>
+                <th>Date_of_creation</th>
+                <td>{{ commit.dateOfCreation ? commit.dateOfCreation|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Pseudo</th>
+                <td>{{ commit.pseudo }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('commit_index') }}">back to list</a>
+
+    <a href="{{ path('commit_edit', {'id': commit.id}) }}">edit</a>
+
+    {{ include('commit/_delete_form.html.twig') }}
+{% endblock %}

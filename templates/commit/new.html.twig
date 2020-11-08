@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Commit{% endblock %}
+
+{% block body %}
+    <h1>Create new Commit</h1>
+
+    {{ include('commit/_form.html.twig') }}
+
+    <a href="{{ path('commit_index') }}">back to list</a>
+{% endblock %}

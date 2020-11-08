@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}{{article.tittle}}{% endblock %}
+
+
+{% block body %} 
+
+<style>
+.title {margin-left : 8em;
+font-size:4em}
+.text {margin-left: 5em;
+margin-right: 5em;
+margin-bottom: 5em;
+};
+.banner {
+    width :100%
+    heigh :100em
+}
+ </style>
+
+
+{% block content %} 
+
+
+<img class="banner" src={{article.banner}}>
+
+<h1 class= "title">{{article.tittle}}</h1>
+
+
+<div class="text"> {{article.content}} 
+        <li>ecrit par {{article.author.email}} le {{ article.DateOfPublication|date("d/m/Y")}}
+</div>
+
+
+
+{{ form(form) }}
+
+
+
+    {% for commit in commits  %}
+    <h2  > {{commit.pseudo}} a écrit : </h2>
+        <li> {{commit.content}}</li>
+    {% if app.user.username == article.author.email  %}
+    <form><button methods="delete"  href="commit/{{commit.id}}">Delete </button></form>
+    {% endif %}
+
+    {% endfor %}
+
+{% endblock %}
+
+
+{% endblock %}

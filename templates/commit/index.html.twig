@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commit index{% endblock %}
+
+{% block body %}
+    <h1>Commit index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Content</th>
+                <th>Date_of_creation</th>
+                <th>Pseudo</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for commit in commits %}
+            <tr>
+                <td>{{ commit.id }}</td>
+                <td>{{ commit.email }}</td>
+                <td>{{ commit.content }}</td>
+                <td>{{ commit.dateOfCreation ? commit.dateOfCreation|date('Y-m-d') : '' }}</td>
+                <td>{{ commit.pseudo }}</td>
+                <td>
+                    <a href="{{ path('commit_show', {'id': commit.id}) }}">show</a>
+                    <a href="{{ path('commit_edit', {'id': commit.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('commit_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+    <style> 
+    body {margin: 0;
+    Background-color: #d1d1e0
+    }
+    a {color: darkSlateGrey;
+    text-decoration: none;}
+    .navbar { 
+        Background-color: #F3F3F3;
+        display: flex;    
+        justify-content: space-around;
+        height: 75px
+    }
+    .submenu {display:flex; justify-content:space-around;  width : 25%;   align-self:center
+
+}
+    </style>
+    <body>
+        <div class="navbar" > 
+            <div class= "submenu"><a href="/">home</a> 
+            {%if app.user %}
+            <a href="/newarticle">creer un article</a>
+            {% endif %}
+            
+            </div>
+                {% if app.user %}
+        <div class="submenu">
+            Hello {{ app.user.username }}   
+        </div>
+    {% endif %}
+        <div class = "submenu" >
+            {% if app.user %}
+            
+            
+<a href="/profil">Profil</a> <a href="{{ path('app_logout') }}">Logout</a>
+                    
+            {% else %} <div class = "submenu">             
+            <a href="/login">Se connecter</a></div>
+
+            {% endif %}</div>
+            </div>
+<div class="example-wrapper">
+    
+
+        
+    
+        {% block body %}
+
+    
+
+
+        {% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
